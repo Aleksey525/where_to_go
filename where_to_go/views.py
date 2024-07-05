@@ -3,7 +3,7 @@ from django.template import loader
 
 
 def index_page(request):
-    template = loader.get_template('index.html')
     context = {}
+    template = loader.get_template('index.html')
     rendered_page = template.render(context, request)
     return HttpResponse(rendered_page)
