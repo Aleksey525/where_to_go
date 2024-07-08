@@ -1,58 +1,49 @@
-from django.http import HttpResponse
-from django.template import loader
+import json
+
+from django.http import JsonResponse
 from django.shortcuts import render
 from places.models import Place, Image
+from django.shortcuts import get_object_or_404
 
 
 def serialize_place(place):
     return {
-      'title': place.title,
-      'imgs': '',
-      'short_description': place.description_short,
-      'description_long': place.description_long,
-      'lat': place.lat,
-      'lng': place.lng
-    }
-
-
-def serialize_image(image):
-    return {
-        'title': image.title,
-        'imgs': image.imgs.url
+        'type': 'Feature',
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [place.lng, place.lat]
+        },
+        "properties": {
+            "title": place.title,
+            "placeId": place.pk,
+            "detailsUrl": f'http://127.0.0.1:8000/places/{place.pk}/'
+        }
     }
 
 
 def index_page(request):
     places = Place.objects.all()
-    context = {
-      'places_geo': {
-          "type": "FeatureCollection",
-          "features": [
-            {
-              "type": "Feature",
-              "geometry": {
-                "type": "Point",
-                "coordinates": [places[0].lng, places[0].lat]
-              },
-              "properties": {
-                "title": places[0].title,
-                "placeId": "moscow_legends",
-                "detailsUrl": ""
-              }
-            },
-            {
-              "type": "Feature",
-              "geometry": {
-                "type": "Point",
-                "coordinates": [places[1].lng, places[1].lat]
-              },
-              "properties": {
-                "title": places[1].title,
-                "placeId": "roofs24",
-                "detailsUrl": ""
-              }
-            }
-          ]
-      }
+    features = [serialize_place(place) for place in places]
+    place_data = {
+        "type": "FeatureCollection",
+        "features": features
     }
+    context = {'places_geo': place_data}
     return render(request, 'index.html', context=context)
+
+
+def places_page(request, place_id=None):
+    place = get_object_or_404(Place, pk=place_id)
+    g = {
+        'title': place.title,
+        'description_short': place.description_short,
+        'description_long': place.description_long,
+        'coordinates': {
+            'lng': place.lng,
+            'lat': place.lat
+        }
+    }
+    return JsonResponse(g, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
+
+
+
