@@ -18,9 +18,9 @@ class Place(models.Model):
 
 class Image(models.Model):
     title = models.CharField(verbose_name='Название', max_length=200)
-    imgs = models.ImageField(verbose_name='Фото', blank=True, upload_to='media/')
+    imgs = models.ImageField(verbose_name='Фото', blank=True)
     place = models.ForeignKey(Place, blank=True, null=True, on_delete=models.CASCADE)
-    position = models.IntegerField(verbose_name='Позиция', null=True, blank=True)
+    position = models.PositiveIntegerField(verbose_name='Позиция', default=0)
 
     def __str__(self):
         return f'{self.pk} {self.title}'
@@ -28,6 +28,16 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
+        ordering = ['position']
+
+
+
+
+
+
+
+
+
 
 
 

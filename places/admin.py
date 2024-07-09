@@ -1,20 +1,22 @@
 from django.contrib import admin
 from .models import Place, Image
 from django.utils.safestring import mark_safe
+from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 
-class ImageInline(admin.TabularInline):
+
+class ImageTabularInline(SortableTabularInline):
     model = Image
-    fields = ('imgs', ('preview', 'position'))
+    fields = ('title', 'imgs', ('preview', 'position'))
     readonly_fields = ['preview']
     def preview(self, obj):
         return mark_safe(f'<img src="{obj.imgs.url}" style="max-height: 200px;">')
 
-
-class PlaceAdmin(admin.ModelAdmin):
+class SortablePlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [
-        ImageInline,
+        ImageTabularInline,
     ]
 
 
-admin.site.register(Place, PlaceAdmin)
+admin.site.register(Place, SortablePlaceAdmin)
 admin.site.register(Image)
+
