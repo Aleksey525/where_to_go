@@ -6,10 +6,11 @@ from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 
 class ImageTabularInline(SortableTabularInline):
     model = Image
-    fields = ('title', 'imgs', ('preview', 'position'))
+    fields = ('title', 'img', ('preview', 'position'))
     readonly_fields = ['preview']
+
     def preview(self, obj):
-        return mark_safe(f'<img src="{obj.imgs.url}" style="max-height: 200px;">')
+        return mark_safe(f'<img src="{obj.img.url}" style="max-height: 200px;">')
 
 class SortablePlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [
