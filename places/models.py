@@ -20,6 +20,7 @@ class Image(models.Model):
     title = models.CharField(verbose_name='Название', max_length=200)
     imgs = models.ImageField(verbose_name='Фото', blank=True, upload_to='media/')
     place = models.ForeignKey(Place, blank=True, null=True, on_delete=models.CASCADE)
+    position = models.IntegerField(verbose_name='Позиция', null=True, blank=True)
 
     def __str__(self):
         return f'{self.pk} {self.title}'
