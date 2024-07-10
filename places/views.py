@@ -2,6 +2,12 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from places.models import Place, Image
 from django.shortcuts import get_object_or_404
+from environs import Env
+
+
+env = Env()
+env.read_env()
+HOST = env.str('DETAILS_URL')
 
 
 def serialize_place(place):
@@ -14,7 +20,7 @@ def serialize_place(place):
         "properties": {
             "title": place.title,
             "placeId": place.pk,
-            "detailsUrl": f'http://127.0.0.1:8000/places/{place.pk}/'
+            "detailsUrl": f'http://{HOST}/places/{place.pk}/'
         }
     }
 
