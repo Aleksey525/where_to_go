@@ -26,15 +26,6 @@ class Image(models.Model):
     def __str__(self):
         return f'{self.pk} {self.title}'
 
-    def save(self, *args, **kwargs):
-        if not self.position:
-            last_image = Image.objects.filter(place=self.place).order_by('-position').first()
-            if last_image is None:
-                self.position = 0
-            else:
-                self.position = last_image.position + 1
-        super().save(*args, **kwargs)
-
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'

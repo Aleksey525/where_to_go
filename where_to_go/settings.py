@@ -118,3 +118,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# TINYMCE_JS_URL = os.path.join(BASE_DIR, "static/js/tinymce/tinymce.min.js")
+# TINYMCE_JS_ROOT = os.path.join(STATIC_URL, 'js/tinymce')
+
+TINYMCE_DEFAULT_CONFIG = {
+    'entity_encoding': 'raw',
+    'height' : 500,
+    'plugins': "image, imagetools, media, codesample, link, code, advlist, autolink, lists,link, charmap, preview, anchor,",
+    'cleanup_on_startup': True,
+    'menubar': True,
+    'toolbar': "styleselect | undo redo | bold italic | alignleft aligncenter alignright | link image media codesample code",
+    'image_caption': True,
+    'image_advtab': True,
+    'custom_undo_redo_levels': 10,
+    'file_browser_callback': "myFileBrowser",
+}
