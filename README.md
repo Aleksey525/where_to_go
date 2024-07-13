@@ -53,7 +53,13 @@ Quit the server with CTRL-BREAK.
 #####
 * Чтобы наполнить сайт контентом, нужно перейти по ссылке [admin_panel_places](https://alekseitol.pythonanywhere.com/admin/places/place/).  
   Далее можно найти существующую локацию, введя название в поле для поиска и отредактировать ее. Или создать новую.
-
+#####
+* Для автоматического заполнения базы даных интегрирована команда `load_place`.  
+  Пример запуска команды:  
+  ```
+  python manage.py load_place http://адрес/файла.json
+  ```  
+  json файлы с мета-данными локации находятся в репозитории [where-to-go-places](https://github.com/devmanorg/where-to-go-places)
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman.org](https://dvmn.org).
