@@ -7,7 +7,7 @@ from environs import Env
 
 env = Env()
 env.read_env()
-host = env.str('HOST')
+host = env.str('HOST', '127.0.0.1:8000')
 
 
 def serialize_place(place):
