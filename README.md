@@ -39,9 +39,9 @@ Quit the server with CTRL-BREAK.
 - `SECRET_KEY` — секретный ключ проекта
 - `DEBUG` — дебаг-режим. Поставьте True, чтобы увидеть отладочную информацию в случае ошибки.
 - `ALLOWED_HOSTS` — см. [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
-- `STATIC_URL` — секретный ключ проекта
-- `MEDIA_URL` — секретный ключ проекта
-- `DETAILS_URL` — секретный ключ проекта
+- `STATIC_URL` — STATIC_URL
+- `MEDIA_URL` — MEDIA_URL
+- `HOST` — хост проекта
 ### Сценарии использования
 * Проверить работу сайта можно перейдя по ссылке [where_to_go](https://alekseitol.pythonanywhere.com/).  
   Перейти в админ панель для добавления новой локации, координат, описания и фотографий можно по ссылке 
@@ -52,14 +52,14 @@ Quit the server with CTRL-BREAK.
 * Проверить работу сайта на смартфоне можно по тем же ссылкам.
 #####
 * Чтобы наполнить сайт контентом, нужно перейти по ссылке [admin_panel_places](https://alekseitol.pythonanywhere.com/admin/places/place/).  
-  Далее можно найти существующую локацию, введя название в поле для поиска и отредактировать ее. Или создать новую.
+  После найти существующую локацию, введя название в поле для поиска и отредактировать ее. Или создать новую.
 #####
 * Для автоматического заполнения базы даных интегрирована команда `load_place`.  
   Пример запуска команды:  
   ```
   python manage.py load_place http://адрес/файла.json
   ```  
-  json файлы с мета-данными локации находятся в репозитории [where-to-go-places](https://github.com/devmanorg/where-to-go-places)
+  json файлы с мета-данными локаций находятся в репозитории [where-to-go-places](https://github.com/devmanorg/where-to-go-places)
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman.org](https://dvmn.org).

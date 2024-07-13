@@ -7,7 +7,7 @@ from environs import Env
 
 env = Env()
 env.read_env()
-HOST = env.str('DETAILS_URL')
+host = env.str('HOST')
 
 
 def serialize_place(place):
@@ -20,7 +20,7 @@ def serialize_place(place):
         "properties": {
             "title": place.title,
             "placeId": place.pk,
-            "detailsUrl": f'http://{HOST}/places/{place.pk}/'
+            "detailsUrl": f'http://{host}/places/{place.pk}/'
         }
     }
 
