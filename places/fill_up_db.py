@@ -1,9 +1,11 @@
-import os
-import requests
-from .models import Place, Image
-from urllib.parse import urlsplit, unquote
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from urllib.parse import urlsplit, unquote
+
+import os
+import requests
+
+from .models import Place, Image
 
 
 def get_file_name(file_link):

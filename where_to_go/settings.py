@@ -1,13 +1,11 @@
-import os
 from environs import Env
+import os
+from pathlib import Path
 
 
 env = Env()
 env.read_env()
 
-
-
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +20,6 @@ SECRET_KEY = env.str('SECRET_KEY', 'REPLACE_ME')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', True)
-
 
 
 # Application definition
@@ -120,8 +117,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# TINYMCE_JS_URL = os.path.join(BASE_DIR, "static/js/tinymce/tinymce.min.js")
-# TINYMCE_JS_ROOT = os.path.join(STATIC_URL, 'js/tinymce')
 
 TINYMCE_DEFAULT_CONFIG = {
     'entity_encoding': 'raw',
