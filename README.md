@@ -3,7 +3,7 @@
 ![screenshot](https://github.com/Aleksey525/where_to_go/blob/master/site_screenshot.jpg)
 ### Как установить
 
-Python3 должен быть уже установлен. Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
+Python3.11 должен быть уже установлен. Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
 
 ```
 
