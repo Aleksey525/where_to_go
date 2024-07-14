@@ -11,11 +11,11 @@ pip install -r requirements.txt
 
 ```
 
-Создайть БД:
+Создать БД:
 ```
 python manage.py migrate
 ```
-Создайть суперпользователя:
+Создать суперпользователя:
 ```
 python manage.py createsuperuser
 ```
