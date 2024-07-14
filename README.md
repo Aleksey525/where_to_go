@@ -39,8 +39,8 @@ Quit the server with CTRL-BREAK.
 - `SECRET_KEY` — секретный ключ проекта
 - `DEBUG` — дебаг-режим. Поставьте True, чтобы увидеть отладочную информацию в случае ошибки.
 - `ALLOWED_HOSTS` — см. [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
-- `STATIC_URL` — STATIC_URL
-- `MEDIA_URL` — MEDIA_URL
+- `STATIC_URL` — см. [документацию Django](https://docs.djangoproject.com/en/3.0/ref/settings/#static-url)
+- `MEDIA_URL` — см. [документацию Django](https://docs.djangoproject.com/en/3.0/ref/settings/#media-url)
 - `HOST` — хост проекта
 ### Сценарии использования
 * Проверить работу сайта можно перейдя по ссылке [where_to_go](https://alekseitol.pythonanywhere.com/).  
