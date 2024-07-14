@@ -29,16 +29,16 @@ def main(url):
     response.raise_for_status()
     data = response.json()
     title = data['title']
-    description_long = data['description_long']
-    description_short = data['description_short']
+    long_description = data['long_description']
+    short_description = data['short_description']
     lat = data['coordinates']['lat']
     lng = data['coordinates']['lng']
     images = data['imgs']
 
     Place.objects.get_or_create(
         title=title,
-        description_long=description_long,
-        description_short=description_short,
+        description_long=long_description,
+        description_short=short_description,
         lat=lat,
         lng=lng
     )
