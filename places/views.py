@@ -38,10 +38,9 @@ def index_page(request):
 
 def places_page(request, place_id=None):
     place = get_object_or_404(Place, pk=place_id)
-    images = Image.objects.filter(title=place.title)
     place_data = {
         'title': place.title,
-        'imgs': [image.img.url for image in images],
+        'imgs': [image.img.url for image in place.images.all()],
         'description_short': place.short_description,
         'description_long': place.long_description,
         'coordinates': {

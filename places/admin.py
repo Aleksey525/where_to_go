@@ -7,7 +7,7 @@ from .models import Place, Image
 
 class ImageTabularInline(SortableTabularInline):
     model = Image
-    fields = ('title', 'img', 'preview', 'position')
+    fields = ('img', 'preview', 'position')
     readonly_fields = ['preview']
 
     def preview(self, obj):

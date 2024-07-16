@@ -29,16 +29,16 @@ def main(url):
     response.raise_for_status()
     data = response.json()
     title = data['title']
-    long_description = data['long_description']
-    short_description = data['short_description']
+    long_description = data['description_long']
+    short_description = data['description_short']
     lat = data['coordinates']['lat']
     lng = data['coordinates']['lng']
     images = data['imgs']
 
     Place.objects.get_or_create(
         title=title,
-        description_long=long_description,
-        description_short=short_description,
+        long_description=long_description,
+        short_description=short_description,
         lat=lat,
         lng=lng
     )
@@ -46,7 +46,7 @@ def main(url):
     place = Place.objects.get(title=title)
     for position, image_url in enumerate(images):
         image_file = load_image_from_url(image_url)
-        image_model = Image(title=title, img=image_file, place=place, position=position + 1)
+        image_model = Image(img=image_file, place=place, position=position + 1)
         image_model.save()
 
 
