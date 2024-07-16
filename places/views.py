@@ -28,17 +28,17 @@ def serialize_place(place):
 def index_page(request):
     places = Place.objects.all()
     features = [serialize_place(place) for place in places]
-    place_data = {
+    place_serialize = {
         'type': 'FeatureCollection',
         'features': features
     }
-    context = {'places_geo': place_data}
+    context = {'places_geo': place_serialize}
     return render(request, 'index.html', context=context)
 
 
 def places_page(request, place_id=None):
     place = get_object_or_404(Place.objects.prefetch_related('images'), pk=place_id)
-    place_data = {
+    place_serialize = {
         'title': place.title,
         'imgs': [image.img.url for image in place.images.all()],
         'description_short': place.short_description,
@@ -48,4 +48,4 @@ def places_page(request, place_id=None):
             'lat': place.lat
         }
     }
-    return JsonResponse(place_data, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
+    return JsonResponse(place_serialize, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
