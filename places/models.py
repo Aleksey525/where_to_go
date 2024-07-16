@@ -28,6 +28,6 @@ class Image(models.Model):
         ordering = ['position']
 
     def __str__(self):
-        return f'{self.pk}'
+        return f'{self.pk} {self.place.title}'
 
 
