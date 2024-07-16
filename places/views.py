@@ -6,11 +6,6 @@ from environs import Env
 from django.urls import reverse
 
 
-env = Env()
-env.read_env()
-host = env.str('HOST', '127.0.0.1:8000')
-
-
 def serialize_place(place):
     return {
         'type': 'Feature',
