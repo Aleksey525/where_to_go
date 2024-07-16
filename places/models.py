@@ -18,8 +18,8 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    img = models.ImageField(verbose_name='Фото', blank=True)
-    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.CASCADE)
+    img = models.ImageField(verbose_name='Фото')
+    place = models.ForeignKey(Place, null=True, on_delete=models.CASCADE)
     position = models.PositiveIntegerField(verbose_name='Позиция', default=0)
 
     class Meta:
@@ -28,6 +28,6 @@ class Image(models.Model):
         ordering = ['position']
 
     def __str__(self):
-        return f'{self.pk} {self.title}'
+        return f'{self.pk}'
 
 
