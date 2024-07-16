@@ -18,6 +18,7 @@ def get_file_name(file_link):
 
 def load_image_from_url(url):
     response = requests.get(url)
+    response.raise_for_status()
     file_name = get_file_name(url)
     image_data = ContentFile(response.content)
     image_file = default_storage.save(file_name, image_data)
