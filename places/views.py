@@ -37,7 +37,7 @@ def index_page(request):
 
 
 def places_page(request, place_id=None):
-    place = get_object_or_404(Place, pk=place_id)
+    place = get_object_or_404(Place.objects.prefetch_related('images'), pk=place_id)
     place_data = {
         'title': place.title,
         'imgs': [image.img.url for image in place.images.all()],
