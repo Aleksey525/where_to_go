@@ -28,13 +28,13 @@ def load_image_from_url(url):
 def main(url):
     response = requests.get(url)
     response.raise_for_status()
-    data = response.json()
-    title = data['title']
-    long_description = data['description_long']
-    short_description = data['description_short']
-    lat = data['coordinates']['lat']
-    lng = data['coordinates']['lng']
-    images = data['imgs']
+    place = response.json()
+    title = place['title']
+    long_description = place['description_long']
+    short_description = place['description_short']
+    lat = place['coordinates']['lat']
+    lng = place['coordinates']['lng']
+    images = place['imgs']
 
     Place.objects.get_or_create(
         title=title,
