@@ -1,9 +1,9 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from places.models import Place, Image
 from django.shortcuts import get_object_or_404
-from environs import Env
 from django.urls import reverse
+
+from places.models import Place
 
 
 def serialize_place(place):
