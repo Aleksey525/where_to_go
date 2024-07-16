@@ -18,9 +18,9 @@ def serialize_place(place):
             'coordinates': [place.lng, place.lat]
         },
         "properties": {
-            "title": place.title,
-            "placeId": place.pk,
-            "detailsUrl": f'http://{host}/places/{place.pk}/'
+            'title': place.title,
+            'placeId': place.pk,
+            'detailsUrl': f'http://{host}/places/{place.pk}/'
         }
     }
 
@@ -29,8 +29,8 @@ def index_page(request):
     places = Place.objects.all()
     features = [serialize_place(place) for place in places]
     place_data = {
-        "type": "FeatureCollection",
-        "features": features
+        'type': 'FeatureCollection',
+        'features': features
     }
     context = {'places_geo': place_data}
     return render(request, 'index.html', context=context)
