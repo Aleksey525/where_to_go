@@ -3,6 +3,7 @@ from django.shortcuts import render
 from places.models import Place, Image
 from django.shortcuts import get_object_or_404
 from environs import Env
+from django.urls import reverse
 
 
 env = Env()
@@ -20,7 +21,7 @@ def serialize_place(place):
         "properties": {
             'title': place.title,
             'placeId': place.pk,
-            'detailsUrl': f'http://{host}/places/{place.pk}/'
+            'detailsUrl': reverse('places_page', args=[place.pk])
         }
     }
 
