@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 
@@ -11,7 +12,7 @@ class ImageTabularInline(SortableTabularInline):
     readonly_fields = ['preview']
 
     def preview(self, obj):
-        return mark_safe(f'<img src="{obj.img.url}" style="max-height: 200px;">')
+        return format_html('<img src="{}" style="max-height: 200px;">', mark_safe(obj.img.url))
 
 
 @admin.register(Place)
