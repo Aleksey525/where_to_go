@@ -36,7 +36,7 @@ def main(url):
     lng = place['coordinates']['lng']
     images = place['imgs']
 
-    Place.objects.get_or_create(
+    place = Place.objects.get_or_create(
         title=title,
         long_description=long_description,
         short_description=short_description,
@@ -44,10 +44,9 @@ def main(url):
         lng=lng
     )
 
-    place = Place.objects.get(title=title)
     for position, image_url in enumerate(images):
         image_file = load_image_from_url(image_url)
-        Image.objects.create(img=image_file, place=place, position=position + 1)
+        Image.objects.create(img=image_file, place=place[0], position=position + 1)
 
 
 
