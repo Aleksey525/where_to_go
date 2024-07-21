@@ -6,13 +6,19 @@ from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 
 from .models import Place, Image
 
+
+IMAGE_MAX_HEIGHT = 300
+IMAGE_MAX_WIDTH = 300
+
+
 class ImageTabularInline(SortableTabularInline):
     model = Image
     fields = ('img', 'preview', 'position')
     readonly_fields = ['preview']
 
     def preview(self, obj):
-        return format_html('<img src="{}" style="max-height: 200px; max-width: 200px">', mark_safe(obj.img.url))
+        return format_html('<img src="{}" style="max-height: {}px; max-width: {}px">',
+                           mark_safe(obj.img.url), IMAGE_MAX_HEIGHT, IMAGE_MAX_WIDTH)
 
 
 @admin.register(Place)
