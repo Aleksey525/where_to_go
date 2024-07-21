@@ -47,8 +47,7 @@ def main(url):
     place = Place.objects.get(title=title)
     for position, image_url in enumerate(images):
         image_file = load_image_from_url(image_url)
-        image_model = Image(img=image_file, place=place, position=position + 1)
-        image_model.save()
+        Image.objects.create(img=image_file, place=place, position=position + 1)
 
 
 
