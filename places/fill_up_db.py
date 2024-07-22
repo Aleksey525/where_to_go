@@ -1,3 +1,6 @@
+import sys
+import time
+
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
@@ -7,6 +10,9 @@ import os
 import requests
 
 from .models import Place, Image
+
+
+RECONNECTION_DELAY = 30
 
 
 def get_file_name(file_link):
@@ -52,8 +58,17 @@ def main(url):
         print('Запись не существует')
 
     for position, image_url in enumerate(images):
-        image_file = load_image_from_url(image_url)
-        Image.objects.create(img=image_file, place=place[0], position=position + 1)
+        try:
+            image_file = load_image_from_url(image_url)
+            Image.objects.create(img=image_file, place=place[0], position=position + 1)
+        except requests.exceptions.HTTPError:
+            sys.stderr.write('Ошибка HTTP\n')
+            continue
+        except requests.exceptions.ConnectionError:
+            sys.stderr.write('Ошибка подключения\n')
+            time.sleep(RECONNECTION_DELAY)
+
+
 
 
 
