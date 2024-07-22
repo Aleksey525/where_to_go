@@ -40,10 +40,11 @@ def main(url):
     try:
         place = Place.objects.get_or_create(
             title=title,
-            long_description=long_description,
-            short_description=short_description,
-            lat=lat,
-            lng=lng
+            defaults={'long_description': long_description,
+                      'short_description': short_description,
+                      'lat': lat,
+                      'lng': lng
+                      }
         )
     except MultipleObjectsReturned:
         print('Найдено несколько одинаковых записей')
