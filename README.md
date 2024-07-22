@@ -41,7 +41,6 @@ Quit the server with CTRL-BREAK.
 - `ALLOWED_HOSTS` — см. [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
 - `STATIC_URL` — см. [документацию Django](https://docs.djangoproject.com/en/3.0/ref/settings/#static-url)
 - `MEDIA_URL` — см. [документацию Django](https://docs.djangoproject.com/en/3.0/ref/settings/#media-url)
-- `HOST` — хост проекта
 ### Сценарии использования
 * Проверить работу сайта можно перейдя по ссылке [where_to_go](https://alekseitol.pythonanywhere.com/).  
   Перейти в админ панель для добавления новой локации, координат, описания и фотографий можно по ссылке 
