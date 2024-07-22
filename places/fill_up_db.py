@@ -1,5 +1,6 @@
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from urllib.parse import urlsplit, unquote
 
 import os
@@ -36,13 +37,18 @@ def main(url):
     lng = place['coordinates']['lng']
     images = place['imgs']
 
-    place = Place.objects.get_or_create(
-        title=title,
-        long_description=long_description,
-        short_description=short_description,
-        lat=lat,
-        lng=lng
-    )
+    try:
+        place = Place.objects.get_or_create(
+            title=title,
+            long_description=long_description,
+            short_description=short_description,
+            lat=lat,
+            lng=lng
+        )
+    except MultipleObjectsReturned:
+        print('Найдено несколько одинаковых записей')
+    except ObjectDoesNotExist:
+        print('Запись не существует')
 
     for position, image_url in enumerate(images):
         image_file = load_image_from_url(image_url)
