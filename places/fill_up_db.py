@@ -53,9 +53,9 @@ def main(url):
                       }
         )
     except MultipleObjectsReturned:
-        sys.stderr.write('Найдено несколько одинаковых записей')
+        sys.stderr.write('Найдено несколько одинаковых записей\n')
     except ObjectDoesNotExist:
-        sys.stderr.write('Запись не существует')
+        sys.stderr.write('Запись не существует\n')
 
     for position, image_url in enumerate(images):
         try:
@@ -67,6 +67,12 @@ def main(url):
         except requests.exceptions.ConnectionError:
             sys.stderr.write('Ошибка подключения\n')
             time.sleep(RECONNECTION_DELAY)
+    else:
+        sys.stderr.write('Локация скачана\n')
+
+
+
+
 
 
 
