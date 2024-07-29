@@ -44,7 +44,7 @@ def main(url):
     images = place['imgs']
 
     try:
-        place = Place.objects.get_or_create(
+        place_obj, created = Place.objects.get_or_create(
             title=title,
             defaults={'long_description': long_description,
                       'short_description': short_description,
@@ -60,7 +60,7 @@ def main(url):
     for position, image_url in enumerate(images):
         try:
             image_file = load_image_from_url(image_url)
-            Image.objects.create(img=image_file, place=place[0], position=position + 1)
+            Image.objects.create(img=image_file, place=place_obj, position=position + 1)
         except requests.exceptions.HTTPError:
             sys.stderr.write('Ошибка HTTP\n')
             continue
