@@ -53,9 +53,9 @@ def main(url):
                       }
         )
     except MultipleObjectsReturned:
-        print('Найдено несколько одинаковых записей')
+        sys.stderr.write('Найдено несколько одинаковых записей')
     except ObjectDoesNotExist:
-        print('Запись не существует')
+        sys.stderr.write('Запись не существует')
 
     for position, image_url in enumerate(images):
         try:
